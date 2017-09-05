@@ -1,0 +1,20 @@
+{
+  "name": "vue-resume",
+  "version": "1.0.0",
+  "description": "基于vue.js创建的个人简历编辑器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lossp/vue-resume.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/lossp/vue-resume/issues"
+  },
+  "homepage": "https://github.com/lossp/vue-resume#readme"
+}
