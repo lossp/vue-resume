@@ -22,6 +22,12 @@ export default {
 </script>
 
 <style>
+.icon {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -31,19 +37,22 @@ export default {
   height: 100vh;
 }
 .topbar{
-  background-color: red;
   height: 100px;
+  border-radius: 10px;
+  margin: 7px;
+  box-shadow: 3px 3px 14px #888888;
 }
 main{
-  background-color: pink;
   display: flex;
   flex: 1;
 }
 main > .editor{
-  width: 20em;
+  width: 30em;
+  margin: 14px 7px 14px 7px;
 }
 main > .preview {
   flex: 1;
+  margin: 14px 7px 14px 7px;
 }
 
 </style>

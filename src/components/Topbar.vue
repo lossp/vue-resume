@@ -4,8 +4,8 @@
             Resume
         </div>
         <div class="actions">
-            <button>注册</button>
-            <button>登陆</button>
+            <el-button type="primary">注册</el-button>
+            <el-button>登陆</el-button>
         </div>
     </div>
 </template>
@@ -17,6 +17,8 @@
         display:flex;
         flex-direction: colmun;
         padding: 24px;
+        font-size: 20px;
+        align-itmes: center;
     }
     #topbar>.logo{
         flex:1;
