@@ -13,11 +13,10 @@
         </div>
         <div id="panels">
             <ul>
-                <li v-bind:class="{active: currentTab ===0}">tab1</li>
-                <li v-bind:class="{active: currentTab ===1}">tab2</li>
-                <li v-bind:class="{active: currentTab ===2}">tab3</li>
-                <li v-bind:class="{active: currentTab ===3}">tab4</li>
-                <li v-bind:class="{active: currentTab ===4}">tab5</li>
+                <li v-for="i in [0,1,2,3,4]"
+                    v-bind:class="{active: currentTab===i}"
+                    v-on:click="currentTab = i">tab{{i+1}}
+                </li>
             </ul>
         </div>
     </div>
