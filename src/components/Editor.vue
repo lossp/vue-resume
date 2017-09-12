@@ -14,60 +14,54 @@
         <div id="panels">
             <ul>
                 <li v-bind:class="{active: currentTab===0}">
-                    <profileEditor v-bind:profile='profile'></profileEditor>
+                    <profileEditor v-bind:informations='profile' v-bind:labels="{name:`名字`, city:`城市`,birth:`出生日期`}" title="个人信息"></profileEditor>
                 </li>
                 <li v-bind:class="{active: currentTab===1}">
-                <h2>工作经历</h2>
-                    <el-form>
-                        <div class='container' v-for="(work, index) in works">
-                            <el-form-item label="城市">
-                                <el-input v-model="work.company"></el-input>
-                            </el-form-item>
-                            <el-form-item label="出生日期">
-                                <el-input v-model="work.content"></el-input>
-                            </el-form-item>
-                            <i class ='el-icon-delete' v-on:click="workDelete(index)"></i>
-                            <hr>
-                        </div> 
-                        <el-button type="primary" v-on:click="addWork">添加栏目</el-button>   
-                    </el-form>
-                              
+                    <ArrayEditor v-bind:items='works' v-bind:labels="{company:`公司`, content:`工作内容`}" title="工作经历"></ArrayEditor>
                 </li>
-                <li v-bind:class="{active: currentTab===2}">3</li>
-                <li v-bind:class="{active: currentTab===3}">4</li>
-                <li v-bind:class="{active: currentTab===4}">5</li>
+                <li v-bind:class="{active: currentTab===2}">
+                    <ArrayEditor v-bind:items ='education' v-bind:labels="{school:'学习',major:'专业',degree:'学位',awards:'获奖经历'}" title="教育经历"></ArrayEditor>
+                </li>
+                <li v-bind:class="{active: currentTab===3}">
+                     <ArrayEditor v-bind:items ='projects' v-bind:labels="{project:'项目',content:'项目内容'}" title="项目经历"></ArrayEditor>
+                </li>
+                <li v-bind:class="{active: currentTab===4}">
+                     <profileEditor v-bind:informations ='contacts' v-bind:labels="{qqnumber:'QQ',weixin:'微信', number:'联系电话', email:'电子邮箱'}" title="项目经历"></profileEditor>
+                </li>
             </ul>
         </div>
     </div>
 </template>
 
 <script>
-    import profileEditor from './profileEditor'
+    import profileEditor from './profileEditor';
+    import ArrayEditor from './ArrayEditor';
+
     export default{
-        components:{profileEditor},
+        components:{profileEditor, ArrayEditor},
         data(){
             return{
                 currentTab: 0,
                 icons:['jibenxinxi','gongzuojingli','huojiangjingli17','health','lianxifangshi'],
-                profile:{
+                profile:[{
                     name:'',
                     city:'',
                     birth:''
-                },
+                }],
                 works:[
                     {company: '', content: ''}
-                ]
-            }
-        },
-        methods:{
-            addWork: function(){
-                this.works.push({
-                    company:'',
-                    content:''
-                })
-            },
-            workDelete(index){
-                this.works.splice(index, 1)
+                ],
+                education:
+                    [{school: '', major: '', degree: '', awards: ''}],
+                projects:[
+                    {project: '', content: ''}
+                ],
+                contacts:[{
+                    qqnumber:'',
+                    weixin:'',
+                    number:'',
+                    email:''
+                }]
             }
         }
     }
