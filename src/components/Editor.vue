@@ -1,3 +1,4 @@
+
 <template>
     <div id="editor">
         <div id="items-selection">
@@ -36,7 +37,6 @@
 <script>
     import profileEditor from './profileEditor';
     import ArrayEditor from './ArrayEditor';
-
     export default{
         components:{profileEditor, ArrayEditor},
         props:['resume'],
@@ -44,7 +44,6 @@
             return{
                 currentTab: 0,
                 icons:['jibenxinxi','gongzuojingli','huojiangjingli17','health','lianxifangshi'],
-
             }
         }
     }
