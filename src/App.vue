@@ -14,6 +14,8 @@ import Topbar from './components/Topbar'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
 import store from './store/index'
+import AV from './lib/leancloud'
+import getAVUser from './lib/getAVUser'
 
 
 export default {

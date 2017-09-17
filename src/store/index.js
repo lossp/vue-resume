@@ -5,11 +5,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        count:0
+        count:0,
+        user:{
+            id:'',
+            username:''
+        }
     },
     mutations:{
-        increment(state){
-            state.count++
+		switchTab(state, payload){
+		    state.selected=payload
+        },
+        setUser(state, payload){
+            Object.assign(state.user, payload)
+            console.log(state.user)
+        },
+        removeUser(state){
+            state.user.id = null
         }
     }
 })
