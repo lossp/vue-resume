@@ -1,59 +1,129 @@
 <template>
+  <div id="resumePreview">
+    <!--{{resume}}-->
+    <section data-name="prefile" v-show="resume.profile">
+      <h1>{{resume.profile.name}}</h1>
+      <p>
+        <small><span>居住地:</span>{{resume.profile.city}} | <span>出生日期:</span>{{resume.profile.birth}}</small>
+      </p>
+    </section>
 
-    <div id="preview">
-        <h1>{{resume.profile.name || '请填写姓名'}}</h1>
-        <p>{{resume.profile.city || '请填写城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p>
-        <hr>
-        <section v-if="filter(resume.projects).length > 0">
-            <h2>项目</h2>
-            <ul>
-                <li v-for='project in filter(resume.projects)'>
-                    {{project.project}}
-                    {{project.content}}
-                </li>
-            </ul>
-        </section>
-        <section v-if="filter(resume.works).length > 0">
-            <h2>工作经历</h2>
-            <ul>
-                <li v-for='work in filter(resume.works)'>
-                    {{work.company}}
-                    {{work.content}}
-                </li>
-            </ul>
-        </section>
-    </div>
+    <section data-name="works" v-show="resume.works">
+      <h2>工作经历</h2>
+      <div>
+        {{resume.works.company || '公司名称'}}
+      </div>
+      <div>
+        {{resume.works.content || '工作内容'}}
+      </div>
+    </section>
 
+    <section data-name="education" v-show="resume.education">
+      <h2>教育经历</h2>
+      <div>
+        {{resume.education.school || '学校'}}
+      </div>
+      <div>
+        {{resume.education.major || '专业'}}
+      </div>
+      <div>
+        {{resume.education.degree || '学历'}}
+      </div>
+      <div>
+        {{resume.education.awards || '获奖经历'}}
+      </div>
+    </section>
+
+    <section data-name="projects" v-show="resume.projects">
+      <h2>项目经历</h2>
+      <div>
+        {{resume.projects.project || '项目'}}
+      </div>
+      <div>
+        {{resume.projects.content || '项目内容'}}
+      </div>
+    </section>
+
+    <section data-name="contacts" v-show="resume.contacts">
+      <h2>联系方式</h2>
+        
+    </section>
+
+  </div>
 </template>
 
-
-<style>
-    #preview{
-        border-radius: 10px;
-        min-height: 100px;
-        min-width: 200px;
-        box-shadow: 3px 3px 14px #888888;
-        padding: 8px;
-    }
-</style>
-
 <script>
-    export default{
-        props:['resume'],
-        methods:{
-            filter(array){ //找出非空对象
-                return array.filter(item=> !this.isEmpty(item));
-            },
-            isEmpty(object){
-                let empty = true;
-                for(let key in object){
-                    if(object[key]){
-                        empty = false;
-                        break
-                    }
-                }
-                return empty;
-            }
-        }
+  export default {
+    name: 'ResumePreview',
+    computed: {
+    	resume() {
+    		return this.$store.state.resume
+      }
+    },
+    created() {
+    	console.log(this.resume)
     }
+  }
 </script>
+
+
+<style lang="scss">
+  #resumePreview{
+    background: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+    padding: 2em;
+    color: #333;
+    line-height: 1.2;
+    overflow: auto;
+    *{
+      box-sizing: border-box;
+      font-variant: normal;
+      font-weight: normal;
+    }
+    ol{
+      list-style: none;
+    }
+    section+section{
+      margin-top: 2em;
+    }
+    p{
+      white-space: pre-line;
+    }
+    section{
+      >h2:first-child{
+        background: #ddd;
+        display: inline-block;
+        padding: .2em;
+        margin-bottom: .5em;
+      }
+    }
+    section[data-name='profile']{
+      >h1{
+        margin: .1em 0;
+        font-size: 4em;
+      }
+    }
+    section[data-name='workHistory'],
+    section[data-name='projects'],
+    section[data-name='awards']{
+      li+li{
+        margin-top: 1em;
+      }
+      li{
+        border-bottom: 1px solid #999;
+        padding-bottom: .3em;
+        margin-bottom: .3em;
+      }
+    }
+    section[data-name='education']{
+      li{
+        line-height: 1.5;
+      }
+    }
+    section[data-name='contacts']{
+      td:first-child{
+        padding-right: 1em;
+      }
+    }
+  }
+</style>

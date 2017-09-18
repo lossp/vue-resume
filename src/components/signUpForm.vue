@@ -6,7 +6,7 @@
                 <input type="text" v-model="formData.username">
             </div>
             <div class="row">
-                <label>密码</label>
+                <label>密 码</label>
                 <input type="text" v-model="formData.password">
             </div>
             <div class="actions">
@@ -51,3 +51,16 @@
         }
     }
 </script>
+
+<style lang="scss">
+    .row{
+        margin: 16px 8px 16px 8px;
+    }
+    .actions{
+        input{
+            font-size: 14px;
+            border-radius: 5px;
+            padding: 4px;
+        }
+    }
+</style>

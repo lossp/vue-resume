@@ -45,3 +45,15 @@
         }
     }
 </script>
+
+<style lang="scss">
+    .row{
+        margin: 16px 8px 16px 8px;
+    }
+    .actions{
+        input{
+            border-radius: 5px;
+            padding: 4px;
+        }
+    }
+</style>

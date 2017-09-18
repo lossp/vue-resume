@@ -1,20 +1,38 @@
-
 <template>
     <div id="editor">
         <div id="items-selection">
             <ul id="items-selection">
-                <li v-for="i in [0,1,2,3,4]"
-                    v-bind:class="{active: currentTab===i}"
-                    v-on:click="currentTab = i">
+                <li v-for="(item, index) in resume.config"
+                    v-bind:class="{active: item.field === selected}"
+                    v-on:click="selected = item.field">
                     <svg class="icon" aria-hidden="true">
-                        <use v-bind:xlink:href="`#icon-${icons[i]}`"></use>
+                        <use v-bind:xlink:href="`#icon-${item.icon}`"></use>
                     </svg>
                 </li>
             </ul>
         </div>
         <div id="panels">
+            <!-- <ul>
+                <li v-for="item in resume.config" v-show="item.field === selected">
+                        <div v-if="resume[item.field] instanceof Array">
+                            <div class="subitem" v-for="(subitem, i) in resume[item.field]">
+                                <div class="resumeField" v-for="(value,key) in subitem">
+                                    <label>{{key}}</label>
+                                    <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`.$event.target.value)">
+                                </div>
+                            <hr>
+                            </div>
+                        </div>
+                
+                        <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
+                            <label>{{key}}</label>
+                            <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
+                        </div>
+                
+                </li>
+            </ul> -->
             <ul>
-                <li v-bind:class="{active: currentTab===0}">
+                <!-- <li v-bind:class="{active: currentTab===0}">
                     <profileEditor v-bind:informations='resume.profile' v-bind:labels="{name:`名字`, city:`城市`,birth:`出生日期`}" title="个人信息"></profileEditor>
                 </li>
                 <li v-bind:class="{active: currentTab===1}">
@@ -28,6 +46,14 @@
                 </li>
                 <li v-bind:class="{active: currentTab===4}">
                      <profileEditor v-bind:informations ='resume.contacts' v-bind:labels="{qqnumber:'QQ',weixin:'微信', number:'联系电话', email:'电子邮箱'}" title="项目经历"></profileEditor>
+                </li> -->
+                <li v-for="item in resume.config" v-show="item.field === selected">
+                    <div v-for="(subitem, key) in resume[item.field]">
+                        <label>{{key}}</label>
+                        <input :value="subitem" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)"></input>
+                    </div>
+                    {{1}}
+                    {{item.field}}
                 </li>
             </ul>
         </div>
@@ -37,16 +63,36 @@
 <script>
     import profileEditor from './profileEditor';
     import ArrayEditor from './ArrayEditor';
-    export default{
-        components:{profileEditor, ArrayEditor},
-        props:['resume'],
-        data(){
-            return{
-                currentTab: 0,
-                icons:['jibenxinxi','gongzuojingli','huojiangjingli17','health','lianxifangshi'],
-            }
-        }
+export default {
+  components:{profileEditor, ArrayEditor},
+  name: 'ResumeEditor',
+  computed: {
+    count() {
+      return this.$store.state.count
+    },
+    selected: {
+        get() {
+        return this.$store.state.selected
+      },
+      set(value) {
+        return this.$store.commit('switchTab',value)
+      }
+    },
+    resume() {
+      return this.$store.state.resume
     }
+  },
+  methods: {
+    changeResumeField(path, value) {
+        console.log(value)
+        console.log(path)
+      this.$store.commit('updateResume',{
+        path,
+        value
+      })
+    }
+  }
+}
 </script>
 
 
@@ -90,7 +136,6 @@
                 }
             }
             >ul>li{
-                display: none;
                 height: 100%;
             }
             & .active{
