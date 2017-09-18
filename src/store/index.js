@@ -28,20 +28,37 @@ export default new Vuex.Store({
           }
     },
     mutations:{
+        initState(state, payload){
+            state.resumeConfig.map((item) => {
+                if (item.type === 'array') {
+                  //state.resume[item.field] = [] // 这样写 Vue 无法监听属性变化
+                  Vue.set(state.resume, item.field, [])
+                } else {
+                  //state.resume[item.field] = {} // 这样写 Vue 无法监听属性变化
+                  Vue.set(state.resume, item.field, {})
+                  item.keys.map((key) => {
+                    //state.resume[item.field][key] = '' // 这样写 Vue 无法监听属性变化
+                    Vue.set(state.resume[item.field], key, '')
+                   })
+                 }
+               })
+               if(payload){
+                Object.assign(state, payload)
+               }
+        },
 		switchTab(state, payload){
 		    state.selected=payload
         },
         setUser(state, payload){
-            Object.assign(state.user, payload)
-            console.log(state.user)
+                Object.assign(state, payload)
         },
         removeUser(state){
-            state.user.id = null
+            state.user.id = ''
         },
         updateResume(state,{path, value}){
             // state.resume[field][subfield] = value
             objectPath.set(state.resume, path, value)
-            localStorage.setItem('state',JSON.stringify(state))
+            localStorage.setItem('resume',JSON.stringify(state.resume))
         }
     }
 })

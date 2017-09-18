@@ -50,7 +50,7 @@
                 <li v-for="item in resume.config" v-show="item.field === selected">
                     <div v-for="(subitem, key) in resume[item.field]">
                         <label>{{key}}</label>
-                        <input :value="subitem" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)"></input>
+                        <el-input :value="subitem" @input.native="changeResumeField(`${item.field}.${key}`, $event.target.value)"></el-input>
                     </div>
                     {{1}}
                     {{item.field}}

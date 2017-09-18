@@ -32,10 +32,23 @@ export default {
     },
     exitPreview(){
       this.previewMode = false
+    },
+    restoreResumeFromLocalStorage(){
+      let resume = localStorage.getItem('resume')
+      if(resume){
+      this.$store.commit('setResume', JSON.parse(resume))
+      }
     }
   },
   components: {
       Topbar, Editor, Preview
+  },
+  create(){
+    let state = localStorage.getItem('state')
+    if(state){
+      state = JSON.parse(state)
+    }
+    this.$store.commit('initState')
   }
 }
 </script>
