@@ -100,6 +100,7 @@ main > .preview {
 .previewMode #exitPreview{
   display: inline-block;
   position: fixed;
+  top: 24px;
   right: 16px;
   buttom: 16px;
 }

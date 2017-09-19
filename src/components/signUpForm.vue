@@ -3,11 +3,11 @@
         <form @submit.prevent="signUp">
             <div class="row">
                 <label>用户名</label>
-                <input type="text" v-model="formData.username" required>
+                <el-input type="text" v-model="formData.username" required></el-input>
             </div>
             <div class="row">
                 <label>密 码</label>
-                <input type="text" v-model="formData.password" required>
+                <el-input type="text" v-model="formData.password" required></el-input>
             </div>
             <div class="actions">
                 <input type="submit" value="提交">

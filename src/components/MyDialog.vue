@@ -1,5 +1,6 @@
 <template>
-    <div class="wrapper" v-show="visible">
+<transition name="el-zoom-in-center">
+    <div class="wrapper" v-show="visible" >
         <div class="dialog">
             <header>
                 {{title}}
@@ -10,6 +11,7 @@
             </main>
         </div>
     </div>
+</transition name="el-zoom-in-center">
 </template>
 
 <script>

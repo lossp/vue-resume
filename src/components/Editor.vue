@@ -27,10 +27,7 @@
 </template>
 
 <script>
-    import profileEditor from './profileEditor';
-    import ArrayEditor from './ArrayEditor';
 export default {
-  components:{profileEditor, ArrayEditor},
   name: 'ResumeEditor',
   computed: {
     count() {
