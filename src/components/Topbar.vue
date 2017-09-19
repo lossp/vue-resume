@@ -7,23 +7,23 @@
 
 
             <div v-if="logined" class="userActions">
-                
                 <span>Hello! {{user.username}}</span>
                 <el-button @click="signOut">登出</el-button>
                 <el-button v-on:click='preview'>预览</el-button>
+                <el-button>保存</el-button>
             </div>
             <div v-else class="userActions">
                 <el-button v-on:click="signInDialogVisible = true">登陆</el-button>
                 <el-button type="primary" v-on:click="signUpDialogVisible = true">注册</el-button>
-                <Dia title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-                    <SignUpForm @succeess="signIn($event)" />
-                </Dia>
-                <Dia title="登陆" :visible="signInDialogVisible" @close="signInDialogVisible=false">
-                    <SignInForm @success="signIn($event)"></SignInForm>
-                </Dia>
-                <el-button v-on:click='preview'>预览</el-button>
             </div>
+            
         </div>
+            <Dia title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+                <SignUpForm @success="signIn($event)" />
+            </Dia>
+            <Dia title="登陆" :visible="signInDialogVisible" @close="signInDialogVisible=false">
+                <SignInForm @success="signIn($event)"></SignInForm>
+            </Dia>
     </div>
 </template>
 
@@ -59,6 +59,7 @@
             },
             signIn(user){
                 this.signUpDialogVisible = false
+                this.signInDialogVisible = false
                 this.$store.commit('setUser', user)
             },
             signOut(){
