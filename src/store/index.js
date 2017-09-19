@@ -6,7 +6,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        count:0,
         selected: 'profile',
         user:{
             id:'',
@@ -29,25 +28,11 @@ export default new Vuex.Store({
     },
     mutations:{
         initState(state, payload){
-            state.resumeConfig.map((item) => {
-                if (item.type === 'array') {
-                  //state.resume[item.field] = [] // 这样写 Vue 无法监听属性变化
-                  Vue.set(state.resume, item.field, [])
-                } else {
-                  //state.resume[item.field] = {} // 这样写 Vue 无法监听属性变化
-                  Vue.set(state.resume, item.field, {})
-                  item.keys.map((key) => {
-                    //state.resume[item.field][key] = '' // 这样写 Vue 无法监听属性变化
-                    Vue.set(state.resume[item.field], key, '')
-                   })
-                 }
-               })
-               if(payload){
-                Object.assign(state, payload)
-               }
+            Object.assign(state, payload)
         },
 		switchTab(state, payload){
-		    state.selected=payload
+            state.selected=payload
+            localStorage.setItem('state', JSON.stringify(state))
         },
         setUser(state, payload){
                 Object.assign(state, payload)
@@ -57,8 +42,11 @@ export default new Vuex.Store({
         },
         updateResume(state,{path, value}){
             // state.resume[field][subfield] = value
+            
             objectPath.set(state.resume, path, value)
-            localStorage.setItem('resume',JSON.stringify(state.resume))
+            localStorage.setItem('state',JSON.stringify(state))
+            console.log(state.resume)
+            console.log('updated')
         }
     }
 })

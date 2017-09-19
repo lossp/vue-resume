@@ -43,12 +43,12 @@ export default {
   components: {
       Topbar, Editor, Preview
   },
-  create(){
+  created(){
     let state = localStorage.getItem('state')
     if(state){
       state = JSON.parse(state)
     }
-    this.$store.commit('initState')
+    this.$store.commit('initState',state)
   }
 }
 </script>
