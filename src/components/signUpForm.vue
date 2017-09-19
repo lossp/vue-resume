@@ -43,13 +43,8 @@
                 var user = new AV.User();
                 user.setUsername(username);
                 user.setPassword(password);
-                user.signUp().then((loginedUser)=>{
-                    
-                    this.$emit('success', {
-                        username:loginedUser.attributes.username,
-                        id:loginedUser.id
-                    })
-                    console.log('success')
+                user.signUp().then(()=>{
+                    this.$emit('success', getAVUser())
                 }, (error)=>{
                     this.errorMessage = getErrorMessage(error);
                 });

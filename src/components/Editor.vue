@@ -12,41 +12,7 @@
             </ul>
         </div>
         <div id="panels">
-            <!-- <ul>
-                <li v-for="item in resume.config" v-show="item.field === selected">
-                        <div v-if="resume[item.field] instanceof Array">
-                            <div class="subitem" v-for="(subitem, i) in resume[item.field]">
-                                <div class="resumeField" v-for="(value,key) in subitem">
-                                    <label>{{key}}</label>
-                                    <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`.$event.target.value)">
-                                </div>
-                            <hr>
-                            </div>
-                        </div>
-                
-                        <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
-                            <label>{{key}}</label>
-                            <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
-                        </div>
-                
-                </li>
-            </ul> -->
             <ul>
-                <!-- <li v-bind:class="{active: currentTab===0}">
-                    <profileEditor v-bind:informations='resume.profile' v-bind:labels="{name:`名字`, city:`城市`,birth:`出生日期`}" title="个人信息"></profileEditor>
-                </li>
-                <li v-bind:class="{active: currentTab===1}">
-                    <ArrayEditor v-bind:items='resume.works' v-bind:labels="{company:`公司`, content:`工作内容`}" title="工作经历"></ArrayEditor>
-                </li>
-                <li v-bind:class="{active: currentTab===2}">
-                    <ArrayEditor v-bind:items ='resume.education' v-bind:labels="{school:'学习',major:'专业',degree:'学位',awards:'获奖经历'}" title="教育经历"></ArrayEditor>
-                </li>
-                <li v-bind:class="{active: currentTab===3}">
-                     <ArrayEditor v-bind:items ='resume.projects' v-bind:labels="{project:'项目',content:'项目内容'}" title="项目经历"></ArrayEditor>
-                </li>
-                <li v-bind:class="{active: currentTab===4}">
-                     <profileEditor v-bind:informations ='resume.contacts' v-bind:labels="{qqnumber:'QQ',weixin:'微信', number:'联系电话', email:'电子邮箱'}" title="项目经历"></profileEditor>
-                </li> -->
                 <li v-for="item in resume.config" v-show="item.field === selected">
                     <div v-for="(subitem, key) in resume[item.field]">
                         <label>{{key}}</label>
@@ -84,8 +50,6 @@ export default {
   },
   methods: {
     changeResumeField(path, value) {
-        console.log(value)
-        console.log(path)
       this.$store.commit('updateResume',{
         path,
         value

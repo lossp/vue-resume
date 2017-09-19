@@ -46,7 +46,7 @@
 
     <section data-name="contacts" v-show="resume.contacts">
       <h2>联系方式</h2>
-        
+
     </section>
 
   </div>
@@ -59,9 +59,6 @@
     	resume() {
     		return this.$store.state.resume
       }
-    },
-    created() {
-    	console.log(this.resume)
     }
   }
 </script>
