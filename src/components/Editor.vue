@@ -13,7 +13,8 @@
         </div>
         <div id="panels">
             <ul>
-                <li v-for="item in resume.config" v-show="item.field === selected">
+ 
+                <li v-for="item in resume.config" v-if="item.field === selected">
                     <div v-for="(subitem, key) in resume[item.field]">
                         <label>{{key}}</label>
                         <el-input :value="subitem" @input.native="changeResumeField(`${item.field}.${key}`, $event.target.value)"></el-input>
@@ -21,11 +22,13 @@
                     {{1}}
                     {{item.field}}
                 </li>
+     
             </ul>
         </div>
     </div>
 </template>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 <script>
 export default {
   name: 'ResumeEditor',
@@ -54,13 +57,16 @@ export default {
     }
   }
 }
+
+
+
 </script>
 
 
 <style lang="scss">
     #editor{
         border-radius: 10px;
-        min-height: 300px;
+        min-height: 500px;
         box-shadow: 3px 3px 14px #888888;
         display: flex;
         flex: 1;
@@ -104,4 +110,17 @@ export default {
             }
         }
     }
+
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>

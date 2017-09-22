@@ -51,30 +51,4 @@ export default new Vuex.Store({
             state.resume.id = id
         }
     }
-    // actions:{
-    //     saveResume({state, commit}, payload){
-    //         var Resume = AV.Object.extend('Resume')
-    //         if (state.resume.id) {
-
-    //         } else {
-    //         var resume = new Resume()
-    //         resume.set('profile', state.resume.profile)
-    //         resume.set('works', state.resume.workHistory)
-    //         resume.set('education', state.resume.education)
-    //         resume.set('projects', state.resume.projects)
-    //         resume.set('contacts', state.resume.contacts)
-    //         resume.set('owner_id', getAVUser().id)
-    //         var acl = new AV.ACL()
-    //         acl.setReadAccess(AV.User.current(),true)
-    //         acl.setWriteAccess(AV.User.current(), true)
-    //         resume.setACL(acl)
-    //         resume.save().then(function (response) {
-    //             console.log()
-    //             commit('setResumeId', { id: response.id })
-    //         }).catch(function (error) {
-    //             console.log(error)
-    //         })
-    //         }
-    //     }
-    // }
 })
