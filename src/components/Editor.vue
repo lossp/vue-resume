@@ -12,9 +12,8 @@
             </ul>
         </div>
         <div id="panels">
-            <ul>
- 
-                <li v-for="item in resume.config" v-if="item.field === selected">
+            <transition-group name="fade" tag="ul">
+                <li v-for="(item,index) in resume.config" v-if="item.field === selected" v-bind:key="index">
                     <div v-for="(subitem, key) in resume[item.field]">
                         <label>{{key}}</label>
                         <el-input :value="subitem" @input.native="changeResumeField(`${item.field}.${key}`, $event.target.value)"></el-input>
@@ -22,8 +21,8 @@
                     {{1}}
                     {{item.field}}
                 </li>
-     
-            </ul>
+          
+            </transition-group>
         </div>
     </div>
 </template>
@@ -31,7 +30,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 <script>
 export default {
-  name: 'ResumeEditor',
+  name: 'panels',
   computed: {
     count() {
       return this.$store.state.count
@@ -111,16 +110,11 @@ export default {
         }
     }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
 
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
 </style>
