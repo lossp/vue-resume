@@ -72,15 +72,15 @@ export default {
   margin: 7px;
   box-shadow: 3px 3px 14px #888888;
 }
-main{
+#app main{
   display: flex;
   flex: 1;
 }
-main > .editor{
+#app main > .editor{
   width: 30em;
   margin: 14px 7px 14px 7px;
 }
-main > .preview {
+#app main > .preview {
   flex: 1;
   margin: 14px 7px 14px 7px;
 }
