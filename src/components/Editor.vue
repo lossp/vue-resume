@@ -18,8 +18,7 @@
                         <label>{{key}}</label>
                         <el-input :value="subitem" @input.native="changeResumeField(`${item.field}.${key}`, $event.target.value)"></el-input>
                     </div>
-                    {{1}}
-                    {{item.field}}
+             
                 </li>
           
             </transition-group>

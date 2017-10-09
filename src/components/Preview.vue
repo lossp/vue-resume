@@ -46,7 +46,18 @@
 
     <section data-name="contacts" v-show="resume.contacts">
       <h2>联系方式</h2>
-
+      <div>
+        QQ:{{resume.contacts.qqnumber || '项目内容'}}
+      </div>
+      <div>
+        WeiXin:{{resume.contacts.weixin || '项目内容'}}
+      </div>
+      <div>
+        电话:{{resume.contacts.number || '项目内容'}}
+      </div>
+      <div>
+        邮箱:{{resume.contacts.email || '项目内容'}}
+      </div>
     </section>
 
   </div>

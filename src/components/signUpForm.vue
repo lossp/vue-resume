@@ -7,7 +7,7 @@
             </div>
             <div class="row">
                 <label>密 码</label>
-                <el-input type="text" v-model="formData.password" required></el-input>
+                <el-input type="password" v-model="formData.password" required></el-input>
             </div>
             <div class="actions">
                 <input type="submit" value="提交">

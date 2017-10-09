@@ -52,7 +52,6 @@
         components:{Dia, SignInForm, SignUpForm},
         methods:{
             preview(){
-                console.log(1)
                 this.$emit('preview')
             },
             PopDialog(){
